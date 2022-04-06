@@ -33,3 +33,12 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#editorconfig
+
+.editorconfig
+
+
+#ignoring vscode configs
+
+.vscode
