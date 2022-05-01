@@ -1,9 +1,9 @@
 import Document, {
-  DocumentContext,
-  Head,
   Html,
+  Head,
   Main,
-  NextScript
+  NextScript,
+  DocumentContext
 } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
@@ -15,9 +15,10 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: (App) => (props) => {
-            return sheet.collectStyles(<App {...props} />)
-          }
+          enhanceApp: (App) =>
+            function enhance(props) {
+              return sheet.collectStyles(<App {...props} />)
+            }
         })
 
       const initialProps = await Document.getInitialProps(ctx)
@@ -37,8 +38,8 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="pt-br">
-        <Head></Head>
+      <Html lang="pt-BR">
+        <Head />
         <body>
           <Main />
           <NextScript />
